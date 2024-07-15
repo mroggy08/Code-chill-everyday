@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define ii pair<int,int>
+#define fi first
+#define se second
+#define vi vector<int>
+#define vii vector<ii>
+#define pb push_back
+#define f1(i,n,m) for (int i=n; i<=m; i++)
+#define bit(i,x) ((x>>i)&1)
+#define bp __builtin_popcount
+#define inf INT_MAX
+using namespace std;
+const int N = 1e6+3;
+int kq,n,m,u,v,f[N],c;
+vi a[N];
+//void maximize(int &res, int val) { if (res < val) res = val; }
+void dfs(int u)
+{
+    for (int it : a[u])
+    {
+        c++;
+        dfs(it);
+        kq = max(kq,c);
+//        cout << c << '\n';
+        c--;
+    }
+//    cout << c << '\n';
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    #define task "task"
+    if (fopen(task".inp","r")) {
+        freopen(task".inp","r",stdin);
+        freopen(task".out","w",stdout);
+    }
+    cin >> n >> m;
+    while (m--)
+    {
+        cin >> u >> v;
+        a[u].pb(v);
+    }
+//    f1(i,1,n) f[i]=-1;
+    f1(i,1,n)
+    {
+        c = 0;
+        dfs(i);
+    }
+    cout << kq;
+    return 0;
+}
+
